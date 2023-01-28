@@ -159,7 +159,11 @@ XF86AudioPrev
 XF86AudioStop
     playerctl stop
 
+# Screenshots
+super + shift + s
+	scrot -s -f --line mode=edge
+
 # Custom programs
 # Stream subtitles
-super + shift + s
+super + ctrl + s
   /home/zero/Documentos/stream-subtitles/output/main
