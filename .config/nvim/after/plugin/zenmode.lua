@@ -1,4 +1,7 @@
-require("zen-mode").setup {
+local status, zen = pcall(require, "zen-mode")
+if not status then return end
+
+zen.setup {
   window = {
     width = 90,
     options = {
@@ -9,7 +12,7 @@ require("zen-mode").setup {
 }
 
 vim.keymap.set("n", "<leader>zz", function()
-  require("zen-mode").toggle()
+  zen.toggle()
   vim.wo.wrap = false
   ColorMyPencils()
 end)
