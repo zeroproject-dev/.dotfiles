@@ -17,3 +17,5 @@ alias cat="bat"
 alias catn="/bin/cat"
 alias vim="nvim"
 alias vi="nvim"
+
+eval "$(fnm env --use-on-cd)"

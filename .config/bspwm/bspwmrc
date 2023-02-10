@@ -22,7 +22,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 # Custom initialize
-feh --bg-fill /home/zero/Imágenes/Wallpapers/wallpaper6.jpg &
+feh --bg-fill /home/zero/.dotfiles/wallpapers/wallpaper6.jpg &
 /home/zero/.config/polybar/./launch.sh &
 # /usr/bin/./eww open bar
 picom &
