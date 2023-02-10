@@ -85,6 +85,9 @@ vim.keymap.set("n", "<S-l>", ":tabnext<CR>", { silent = true })
 -- Close tab
 vim.keymap.set("n", "<C-w>", ":tabclose<CR>", { silent = true })
 
+-- Exit terminal mode
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
+
 local has = function (name)
   return vim.fn.has(name) == 1
 end
