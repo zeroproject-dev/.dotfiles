@@ -3,13 +3,18 @@
 pkill sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-#bspc monitor -d I II III IV V VI VII VIII IX X
-bspc monitor HDMI-0 -n principal -d I II III IV
-bspc monitor HDMI-1 -n secondary -d V VI VII
-bspc monitor HDMI-0 -s HDMI-1
+monitor_count=$(xrandr --query | grep " connected " | wc -l)
+
+if [ $monitor_count == 1 ]; then
+  bspc monitor -d I II III IV V VI VII
+elif [ $monitor_count == 2 ]; then
+  bspc monitor HDMI-0 -n principal -d I II III IV
+  bspc monitor HDMI-1 -n secondary -d V VI VII
+  bspc monitor HDMI-0 -s HDMI-1
+fi
 
 bspc config border_width         1
-bspc config window_gap          12
+bspc config window_gap           12
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
@@ -27,3 +32,4 @@ feh --bg-fill /home/zero/.dotfiles/wallpapers/wallpaper6.jpg &
 /home/zero/.config/polybar/./launch.sh &
 # /usr/bin/./eww open bar
 picom &
+udiskie -t &
