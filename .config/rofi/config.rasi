@@ -14,7 +14,7 @@ window {
   border-color: transparent;
   padding: 10px;
   width: 500px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 mainbox {
