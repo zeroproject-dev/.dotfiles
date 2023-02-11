@@ -146,6 +146,15 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+alt + F12
+	pactl set-sink-volume @DEFAULT_SINK@ +2%
+
+alt + F11
+	pactl set-sink-volume @DEFAULT_SINK@ -2%
+
+alt + F10
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 # Player
 XF86AudioPlay
     playerctl play-pause
