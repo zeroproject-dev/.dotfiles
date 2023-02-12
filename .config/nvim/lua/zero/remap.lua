@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- Visual Block mode
+vim.keymap.set("n", "<leader>v", "v<C-v>")
+
 -- Move lines selected
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
