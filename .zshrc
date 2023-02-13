@@ -5,17 +5,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+if [[ $(uname -a | grep ARCH | wc -l) -eq 1 ]]; then
+  source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+  alias ls="lsd"
+  alias cat="bat"
+  alias catn="/bin/cat"
+  alias vim="nvim"
+  alias vi="nvim"
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Aliases
 
-alias ls="lsd"
-alias cat="bat"
-alias catn="/bin/cat"
-alias vim="nvim"
-alias vi="nvim"
 
 eval "$(fnm env --use-on-cd)"

@@ -84,9 +84,14 @@ vim.keymap.set("n", "sv", ":vsplit<Return><C-w>w", { silent = true })
 -- Move between tabs
 vim.keymap.set("n", "<S-h>", ":tabprevious<CR>", { silent = true })
 vim.keymap.set("n", "<S-l>", ":tabnext<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true })
 
 -- Close tab
 vim.keymap.set("n", "<C-w>", ":tabclose<CR>", { silent = true })
+
+-- Close buffer
+vim.keymap.set("n", "<leader>w", ":bd<CR>", { silent = true })
 
 -- Exit terminal mode
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })

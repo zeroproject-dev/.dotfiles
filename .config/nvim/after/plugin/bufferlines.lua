@@ -3,10 +3,13 @@ if (not status) then return end
 
 bufferline.setup {
   options = {
+    numbers = "none",
+    close_command = "bdelete! %d",
+    middle_mouse_command = "bdelete! %d",
     mode = 'tabs',
     separator_style = 'slant',
-    always_show_bufferline = false,
-    show_buffer_close_icons = false,
+    always_show_bufferline = true,
+    show_buffer_close_icons = true,
     show_close_icon = false,
     show_tab_indicators = true,
     color_icons = true,
