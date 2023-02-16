@@ -172,6 +172,10 @@ XF86AudioStop
 super + shift + s
 	scrot -s -f --line mode=edge
 
+# Tab
+alt + Tab
+  rofi -show window
+
 # Custom programs
 # Stream subtitles
 super + ctrl + s

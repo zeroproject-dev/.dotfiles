@@ -96,7 +96,8 @@ packer.startup(function(use)
   use('lewis6991/gitsigns.nvim')
   -- use("jose-elias-alvarez/null-ls.nvim")
 
-
+  -- Debugging
+  use({ 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } })
 end)
 
 -- return packer
