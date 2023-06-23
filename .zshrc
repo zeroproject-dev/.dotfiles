@@ -5,8 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 if [[ $(uname -a | grep ARCH | wc -l) -eq 1 ]]; then
   source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+  plugins=(
+    zsh-autosuggestions
+  )
   alias vim="nvim"
   alias vi="nvim"
 else
