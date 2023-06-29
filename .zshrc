@@ -27,5 +27,6 @@ fi
 alias ls="lsd"
 alias cat="bat"
 alias catn="/bin/cat"
+alias poetry="~/.local/share/pypoetry/venv/bin/poetry"
 
 eval "$(fnm env --use-on-cd)"
