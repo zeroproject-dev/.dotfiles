@@ -62,7 +62,36 @@ keys = [
 
     # Custom Keybindings
     Key([mod], "n", lazy.spawn("firefox"), desc="Spawn a firefox browser"),
-    Key(["mod1"], "space", lazy.spawn("rofi -show drun"), desc="Rofi menu"),
+    Key(["mod1"], "space", lazy.spawn(
+        "rofi -show drun -show-icons"), desc="Rofi menu"),
+    Key([mod], "e", lazy.spawn("nautilus"),
+        desc="Spawn a nautilus file manager"),
+    Key([mod], "f", lazy.window.toggle_floating(),
+        desc="togge floating window"),
+
+    # playerctl
+    Key([], "XF86AudioRaiseVolume", lazy.spawn(
+        "pactl set-sink-volume @DEFAULT_SINK@ +2%")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn(
+        "pactl set-sink-volume @DEFAULT_SINK@ -2%")),
+    Key([], "XF86AudioMute", lazy.spawn(
+        "pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+
+    Key(["mod1"], "F12", lazy.spawn(
+        "pactl set-sink-volume @DEFAULT_SINK@ +2%")),
+    Key(["mod1"], "F11", lazy.spawn(
+        "pactl set-sink-volume @DEFAULT_SINK@ -2%")),
+    Key(["mod1"], "F10", lazy.spawn(
+        "pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
+
+    # Screenshots
+    Key([mod, "shift"], "s", lazy.spawn("scrot -s --freeze --line mode=edge"),
+        desc="Take screenshot with scrot"),
 ]
 
 groups = [Group(i) for i in [" 󰣇 ", "  ",  " 󰆍 ",    "  "]]
@@ -96,7 +125,7 @@ for j, group in enumerate(groups):
 
 layouts = [
     layout.Columns(border_focus_stack=[
-                   "#d75f5f", "#8f3d3d"], border_width=4, margin=5),
+                   "#d75f5f", "#8f3d3d"], border_width=1, margin=5),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
