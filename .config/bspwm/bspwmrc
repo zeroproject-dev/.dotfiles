@@ -15,6 +15,11 @@ elif [ $monitor_count == 2 ]; then
 	bspc monitor HDMI-0 -s HDMI-1
 fi
 
+bspc config focus_follows_pointer true
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+bspc config merge_overlapping_monitors true
+
 bspc config border_width 1
 bspc config window_gap 6
 
@@ -30,8 +35,9 @@ bspc rule -a Screenkey manage=off
 
 # Custom initialize
 setxkbmap -layout us -variant altgr-intl # change keyboard layout
-feh --bg-fill /home/zero/.dotfiles/wallpapers/wallpaper10.jpg &
+feh --bg-fill /home/zero/.dotfiles/wallpapers/wallpaper1.jpg &
 /home/zero/.config/polybar/./launch.sh &
 # /usr/bin/./eww open bar
+nm-applet &
 picom &
 udiskie -t &
