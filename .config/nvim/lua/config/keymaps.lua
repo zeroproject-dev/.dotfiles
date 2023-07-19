@@ -23,3 +23,7 @@ map("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode" })
 map("n", "<leader>du", function()
   require("dapui").toggle()
 end, { desc = "Toggle Dap Ui" })
+
+-- remove <A-{j,k}> binding
+map({ "n", "i" }, "<A-j>", "<Nop>", { desc = "Move down" })
+map({ "n", "i" }, "<A-k>", "<Nop>", { desc = "Move up" })
