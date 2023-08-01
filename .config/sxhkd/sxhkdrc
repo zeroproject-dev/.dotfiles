@@ -170,7 +170,7 @@ XF86AudioStop
 
 # Screenshots
 super + shift + s
-	scrot -s -f --line mode=edge
+  scrot 'screenshot-%Y-%m-%d_%T.png' -s --line mode=edge -e 'mv $f $$HOME/Pictures && xclip -selection clipboard -target image/png -i $$HOME/Pictures/$f'
 
 # Tab
 alt + Tab

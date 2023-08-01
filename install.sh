@@ -17,7 +17,7 @@ command_exists() {
 sudo pacman -S --needed base-devel
 
 # later config lxappearance qt5ct
-BASE_BSPWM="bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet"
+BASE_BSPWM="bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet ttf-hack-nerd"
 TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty"
 CODE="tmux neovim clang ttf-cascadia-code"
 
