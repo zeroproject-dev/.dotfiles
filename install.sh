@@ -53,16 +53,23 @@ if ! command_exists "paru"; then
 fi
 
 # Installing configuration
+rm -rf $userhome/.dotfiles
 dotz repo https://github.com/zeroproject-0/.dotfiles.git $userhome/.dotfiles $userhome
 cd $userhome/.dotfiles && git submodule update --init --recursive
 
 paru -S visual-studio-code-bin microsoft-edge-stable
 
+# installing tmux tmp
+rm -rf $userhome/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm $userhome/.tmux/plugins/tpm
+
 # installing oh my zsh
+export RUNZSH=no
+rm -rf $userhome/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# installing tmux tmp
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
+echo ""
+echo "------------------------------------"
+echo ""
 echo "Uncomment \"#Color\" -> \"Color\" from /etc/pacman.conf for color highlighting in paru"
 echo "For install tmux plugins enter a tmux session and press CTRL+b and shift+i"
