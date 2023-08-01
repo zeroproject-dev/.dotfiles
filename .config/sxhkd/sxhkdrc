@@ -130,7 +130,7 @@ super + shift + f
 	epiphany --incognito-mode
 
 super + n
-	firefox
+	microsoft-edge-stable
 
 # Files System
 super + e
