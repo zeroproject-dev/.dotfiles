@@ -22,21 +22,22 @@ TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty"
 CODE="tmux neovim clang ttf-cascadia-code"
 
 if ! command_exists "git"; then
-	sudo pacman -S git
+	sudo pacman -S --noconfirm git
 fi
 
 if ! command_exists "bspwm"; then
-	sudo pacman -S $BASE_BSPWM
+	sudo pacman -S --noconfirm $BASE_BSPWM
 	install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 	install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 fi
 
-sudo pacman -S $TERMINAL $CODE ranger ueberzug playerctl xorg-xclipboard xclip
-sudo pacman -S gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation
+sudo pacman -S --noconfirm $TERMINAL $CODE ranger ueberzug playerctl xorg-xclipboard xclip
+sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation
 
 # Installing rust and dependencies
 if ! command_exists "cargo"; then
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	source $userhome/.cargo/env
 fi
 
 cargo install dotz
