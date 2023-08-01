@@ -40,6 +40,7 @@ if ! command_exists "cargo"; then
 	source $userhome/.cargo/env
 fi
 
+export PATH="$HOME/.cargo/bin:$PATH"
 cargo install dotz
 cargo install fnm
 cargo install tree-sitter-cli
