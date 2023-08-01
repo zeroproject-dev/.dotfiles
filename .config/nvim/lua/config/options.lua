@@ -4,3 +4,11 @@
 
 vim.opt.wrap = true
 vim.opt.scrolloff = 5
+
+vim.filetype.add({
+  extension = {
+    astro = "astro",
+  },
+})
+
+vim.g.astro_typescript = "enable"

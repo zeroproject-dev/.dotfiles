@@ -24,6 +24,9 @@ map("n", "<leader>du", function()
   require("dapui").toggle()
 end, { desc = "Toggle Dap Ui" })
 
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint at line" })
+map("n", "<leader>dr", "<cmd>DapContinue<CR>", { desc = "Start or continue the debugger" })
+
 -- remove <A-{j,k}> binding
 map({ "n", "i" }, "<A-j>", "<Nop>", { desc = "Move down" })
 map({ "n", "i" }, "<A-k>", "<Nop>", { desc = "Move up" })
