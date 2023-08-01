@@ -46,13 +46,10 @@ cargo install tree-sitter-cli
 
 # installing paru (AUR helper)
 if ! command_exists "paru"; then
-	git clone https://aur.archlinux.org/paru.git /tmp/
+	git clone https://aur.archlinux.org/paru.git /tmp
 	cd /tmp/paru
 	makepkg -si
 fi
-
-# Change default shell to zsh
-sudo chsh /bin/zsh $username
 
 # Installing configuration
 dotz repo https://github.com/zeroproject-0/.dotfiles.git $userhome/.dotfiles $userhome
