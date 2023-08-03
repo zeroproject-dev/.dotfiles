@@ -132,10 +132,6 @@ super + shift + f
 super + n
 	microsoft-edge-stable
 
-# Files System
-super + e
-	nautilus
-
 # Volume
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +2%
@@ -171,6 +167,10 @@ XF86AudioStop
 # Screenshots
 super + shift + s
   scrot 'screenshot-%Y-%m-%d_%T.png' -s --line mode=edge -e 'mv $f $$HOME/Pictures && xclip -selection clipboard -target image/png -i $$HOME/Pictures/$f'
+
+# Colorpicker
+super + ctrl + s
+  colorpicker --short --one-shot --preview | xclip -selection clipboard
 
 # Tab
 alt + Tab

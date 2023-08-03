@@ -57,7 +57,7 @@ rm -rf $userhome/.dotfiles
 dotz repo https://github.com/zeroproject-0/.dotfiles.git $userhome/.dotfiles $userhome
 cd $userhome/.dotfiles && git submodule update --init --recursive
 
-paru -S visual-studio-code-bin microsoft-edge-stable
+paru -S visual-studio-code-bin microsoft-edge-stable emote colorpicker
 
 # installing tmux tmp
 rm -rf $userhome/.tmux/plugins/tpm
