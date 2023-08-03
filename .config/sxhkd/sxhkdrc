@@ -177,6 +177,11 @@ alt + Tab
   rofi -show window
 
 # Custom programs
+
+# Pomodoro https://github.com/zeroproject-dev/pomodoro
+super + alt + p
+  $HOME/custom_bins/Pomodoro
+
 # Stream subtitles
-super + ctrl + s
-  /home/zero/Documentos/stream-subtitles/output/main
+# super + ctrl + s
+#   /home/zero/Documentos/stream-subtitles/output/main
