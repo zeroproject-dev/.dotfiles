@@ -1,20 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if [ x"$@" = x"shutdown" ]
-then
-  shutdown now
-fi
+selected_option=$(echo -e "Shutdown\nLogout\nReboot" | rofi -dmenu -i -p "Select an option: ")
 
-if [ x"$@" = x"reboot" ]
-then
-  reboot now
-fi
-
-if [ x"$@" = x"logout" ]
-then
-  kill -9 -1
-fi
-
-echo "reboot"
-echo "shutdown"
-echo "logout"
+case "$selected_option" in
+"Shutdown")
+	systemctl poweroff
+	;;
+"Logout")
+	kill -9 -1
+	;;
+"Reboot")
+	systemctl reboot
+	;;
+esac

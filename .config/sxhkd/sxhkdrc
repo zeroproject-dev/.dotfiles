@@ -108,15 +108,6 @@ super + ctrl + shift + space
 # move/resize
 #
 
-# expand a window by moving one of its side outward
-# super + alt + {h,j,k,l}
-# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-# super + alt + shift + {h,j,k,l}
-# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# custom resize
 alt + super + {h,j,k,l}
   /home/zero/.config/bspwm/scripts/./bspwm_resize {west,south,north,east}
 
@@ -153,16 +144,28 @@ alt + F10
 
 # Player
 XF86AudioPlay
-    playerctl play-pause
+  playerctl play-pause
 
 XF86AudioNext
-    playerctl next
+  playerctl next
 
 XF86AudioPrev
-    playerctl previous
+  playerctl previous
 
 XF86AudioStop
-    playerctl stop
+  playerctl stop
+
+alt + F8
+  playerctl play-pause
+
+alt + F9
+  playerctl next
+
+alt + F7
+  playerctl previous
+
+alt + F6
+  playerctl stop
 
 # Screenshots
 super + shift + s

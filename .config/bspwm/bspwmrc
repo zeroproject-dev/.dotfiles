@@ -53,3 +53,6 @@ picom &
 
 pkill udiskie
 udiskie -t &
+
+# for applications which need privileges
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
