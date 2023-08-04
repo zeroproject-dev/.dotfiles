@@ -109,7 +109,7 @@ super + ctrl + shift + space
 #
 
 alt + super + {h,j,k,l}
-  /home/zero/.config/bspwm/scripts/./bspwm_resize {west,south,north,east}
+  $HOME/.dotfiles/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
 # move a floating window
 super + ctrl + {h,j,k,l}
