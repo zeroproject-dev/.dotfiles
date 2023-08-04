@@ -8,10 +8,10 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 monitor_count=$(xrandr --query | grep " connected " | wc -l)
 
 if [ $monitor_count == 1 ]; then
-	bspc monitor -d I II III IV V VI VII
+	bspc monitor -d I II III IV V VI VII VIII IX X
 elif [ $monitor_count == 2 ]; then
-	bspc monitor HDMI-0 -n principal -d I II III IV
-	bspc monitor HDMI-1 -n secondary -d V VI VII
+	bspc monitor HDMI-0 -n principal -d I II III IV V
+	bspc monitor HDMI-1 -n secondary -d VI VII VIII IX X
 	bspc monitor HDMI-0 -s HDMI-1
 fi
 
