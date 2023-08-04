@@ -125,22 +125,22 @@ super + n
 
 # Volume
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +2%
+  sh $HOME/.dotfiles/.config/sxhkd/scripts/change_volume.sh up
 
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -2%
+  sh $HOME/.dotfiles/.config/sxhkd/scripts/change_volume.sh down
 
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
+  sh $HOME/.dotfiles/.config/sxhkd/scripts/change_volume.sh mute
 
 alt + F12
-	pactl set-sink-volume @DEFAULT_SINK@ +2%
+  sh $HOME/.dotfiles/.config/sxhkd/scripts/change_volume.sh up
 
 alt + F11
-	pactl set-sink-volume @DEFAULT_SINK@ -2%
+  sh $HOME/.dotfiles/.config/sxhkd/scripts/change_volume.sh down
 
 alt + F10
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
+  sh $HOME/.dotfiles/.config/sxhkd/scripts/change_volume.sh mute
 
 # Player
 XF86AudioPlay
