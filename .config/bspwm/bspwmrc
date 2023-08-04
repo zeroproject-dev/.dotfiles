@@ -54,5 +54,8 @@ picom &
 pkill udiskie
 udiskie -t &
 
+# fix X cursor on no focused windows
+xsetroot -cursor_name left_ptr &
+
 # for applications which need privileges
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
