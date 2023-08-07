@@ -179,6 +179,10 @@ super + ctrl + s
 alt + Tab
   rofi -show window
 
+# ranger
+super + e
+  kitty --hold sh -c "ranger"
+
 # Custom programs
 
 # Pomodoro https://github.com/zeroproject-dev/pomodoro

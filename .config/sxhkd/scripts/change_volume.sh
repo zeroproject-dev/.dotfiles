@@ -5,11 +5,12 @@ function send_notification {
 	volume="$(pamixer --get-volume)"
 	mute="$(pamixer --get-mute)"
 
+	dunstParameters="-a \"changeVolume\" -u low -t 1500 -h string:x-dunst-stack-tag:$msgTag"
+
 	if [[ $volume == 0 || "$mute" == "true" ]]; then
-		dunstify -a "changeVolume" -u low -i audio-volume-muted -h string:x-dunst-stack-tag:$msgTag "Volume muted" &
+		dunstify $dunstParameters "󰝟 Volume muted" &
 	else
-		dunstify -a "changeVolume" -u low -i audio-volume-high -h string:x-dunst-stack-tag:$msgTag \
-			-h int:value:"$volume" "Volume: ${volume}%" &
+		dunstify $dunstParameters -h int:value:"$volume" "󰕾 Volume: ${volume}%" &
 	fi
 }
 

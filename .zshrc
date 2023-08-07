@@ -147,7 +147,10 @@ bindkey '^ ' autosuggest-accept
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Dev dependencies
 export PATH="$HOME/.cargo/bin:$PATH"
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
 
 if [[ $(uname -a | grep ARCH | wc -l) -eq 1 ]]; then
   # source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
