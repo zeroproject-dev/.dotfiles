@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# if [[ $EUID -ne 0 ]]; then
-# 	echo "Run this script with a super user"
-# 	exit 1
-# fi
-
 set -e
 
 username="$USER"
@@ -68,8 +63,13 @@ export RUNZSH=no
 rm -rf $userhome/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo ""
+echo "Installation are finished"
 echo "------------------------------------"
 echo ""
 echo "Uncomment \"#Color\" -> \"Color\" from /etc/pacman.conf for color highlighting in paru"
+echo ""
 echo "For install tmux plugins enter a tmux session and press CTRL+b and shift+i"
+echo ""
+echo "If android emulators of android studio goes slow execute:"
+echo "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
+echo "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"
