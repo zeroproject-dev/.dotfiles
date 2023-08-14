@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	kitty
+  kitty
 
 # program launcher
 alt + @space
@@ -185,9 +185,9 @@ super + e
 
 # Custom programs
 
-# Pomodoro https://github.com/zeroproject-dev/pomodoro
+# Pomodoro https://github.com/zeroproject-dev/zomodoro
 super + alt + p
-  $HOME/custom_bins/Pomodoro
+  zomodoro
 
 # Stream subtitles
 # super + ctrl + s
