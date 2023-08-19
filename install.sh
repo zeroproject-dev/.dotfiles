@@ -13,7 +13,7 @@ sudo pacman -S --needed base-devel
 
 # later config lxappearance qt5ct
 BASE_BSPWM="bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet ttf-hack-nerd polkit-gnome xorg-xsetroot playerctl pamixer"
-TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty"
+TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty starship"
 CODE="tmux neovim clang ttf-cascadia-code"
 
 if ! command_exists "git"; then
@@ -65,6 +65,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 echo "Installation are finished"
 echo "------------------------------------"
+echo ""
+echo "If you are in asus laptop see: https://asus-linux.org/wiki/arch-guide/"
 echo ""
 echo "Uncomment \"#Color\" -> \"Color\" from /etc/pacman.conf for color highlighting in paru"
 echo ""
