@@ -14,7 +14,8 @@ sudo pacman -S --needed base-devel
 # later config lxappearance qt5ct
 BASE_BSPWM="bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet ttf-hack-nerd polkit-gnome xorg-xsetroot playerctl pamixer"
 TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty starship"
-CODE="tmux neovim clang ttf-cascadia-code"
+CODE="tmux neovim clang ttf-cascadia-code jq tidy"
+UTILS="remmina freerdp ranger ueberzug xorg-xclipboard xclip"
 
 if ! command_exists "git"; then
 	sudo pacman -S --noconfirm git
@@ -26,7 +27,7 @@ if ! command_exists "bspwm"; then
 	install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 fi
 
-sudo pacman -S --noconfirm $TERMINAL $CODE ranger ueberzug xorg-xclipboard xclip
+sudo pacman -S --noconfirm $TERMINAL $CODE $UTILS
 sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation
 
 # Installing rust and dependencies

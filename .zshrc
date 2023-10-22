@@ -153,6 +153,9 @@ bindkey '^e' edit-command-line
 export PATH="$HOME/.cargo/bin:$PATH"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=/usr/lib/pkgconfig
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 if [[ $(uname -a | grep ARCH | wc -l) -eq 1 ]]; then
   # source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
@@ -169,4 +172,19 @@ alias cat="bat"
 alias catn="/bin/cat"
 alias poetry="~/.local/share/pypoetry/venv/bin/poetry"
 
+docker_start ()
+{
+  cd ~/docker/$1
+  if [ $# -ge 2 ] && [ "$2" = "clear" ]; then
+    sudo rm -rf ~/docker/$1/data
+  fi
+  docker compose up --remove-orphans --force-recreate --build
+}
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 eval "$(fnm env --use-on-cd)"
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

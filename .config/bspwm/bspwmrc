@@ -14,9 +14,7 @@ elif [ $monitor_count == 2 ]; then
 	bspc monitor HDMI-1 -n secondary -d VI VII VIII IX X
 	bspc monitor HDMI-0 -s HDMI-1
 fi
-
-bspc config focus_follows_pointer true
-bspc config remove_disabled_monitors true
+bspc config focus_follows_pointer true bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 bspc config merge_overlapping_monitors true
 
@@ -41,6 +39,9 @@ setxkbmap -layout us -variant altgr-intl # change keyboard layout
 # feh --randomize --bg-fill "${HOME}/.dotfiles/wallpapers/" &
 feh --bg-fill "${HOME}/.dotfiles/wallpapers/wallpaper19.jpg" &
 
+pkill picom
+picom &
+
 pkill dunst
 dusnt &
 
@@ -50,9 +51,6 @@ pkill polybar
 pkill nm-applet
 nm-applet &
 
-pkill picom
-picom &
-
 pkill udiskie
 udiskie -t &
 
@@ -61,3 +59,7 @@ xsetroot -cursor_name left_ptr &
 
 # for applications which need privileges
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# stop suspend
+xset -dpms &
+xset s off &

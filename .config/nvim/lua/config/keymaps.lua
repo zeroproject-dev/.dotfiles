@@ -24,3 +24,6 @@ vim.keymap.set("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window hei
 vim.keymap.set("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+-- run rest.nvim
+vim.keymap.set("n", "<A-r>", ":lua require('rest-nvim').run()<CR>", { desc = "Run rest.nvim" })
