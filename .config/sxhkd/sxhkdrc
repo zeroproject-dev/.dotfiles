@@ -169,7 +169,7 @@ alt + F6
 
 # Screenshots
 super + shift + s
-  scrot 'screenshot-%Y-%m-%d_%T.png' -s --line mode=edge -e 'mv $f $$HOME/Pictures && xclip -selection clipboard -target image/png -i $$HOME/Pictures/$f'
+  scrot 'screenshot-%Y-%m-%d_%T.png' -s --line mode=edge -e 'mv $f $$HOME/Pictures && xclip -selection clipboard -target image/png -i $$HOME/Pictures/$f && dunstify -a "Screenshot" -u low -t 1500 -h string:x-dunst-stack-tag:screenshot $f &'
 
 # Colorpicker
 super + ctrl + s

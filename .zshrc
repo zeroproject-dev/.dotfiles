@@ -188,3 +188,5 @@ eval "$(fnm env --use-on-cd)"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh

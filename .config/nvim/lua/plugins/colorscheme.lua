@@ -61,16 +61,36 @@ return {
   },
   {
     "navarasu/onedark.nvim",
-    lazy = false,
-    priority = 1000,
     opts = {
       style = "warmer",
     },
   },
   {
+    "EdenEast/nightfox.nvim",
+    opts = {
+      styles = {
+        comments = "italic",
+        keywords = "bold",
+        types = "italic,bold",
+      },
+    },
+  },
+  {
+    "stevedylandev/flexoki-nvim",
+    name = "flexoki",
+  },
+  {
+    "sainnhe/sonokai",
+    lazy = false,
+    priority = 1000,
+    -- opts = {
+    --   style = "andromeda", -- 'default', 'atlantis', 'andromeda', 'shusia', 'maia', 'espresso'
+    -- },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "carbonfox",
     },
   },
 }

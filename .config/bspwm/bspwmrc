@@ -37,7 +37,7 @@ bspc rule -a Screenkey manage=off
 setxkbmap -layout us -variant altgr-intl # change keyboard layout
 # Random wallpaper
 # feh --randomize --bg-fill "${HOME}/.dotfiles/wallpapers/" &
-feh --bg-fill "${HOME}/.dotfiles/wallpapers/wallpaper19.jpg" &
+feh --bg-fill "${HOME}/.dotfiles/wallpapers/wallpaper24.jpg" &
 
 pkill picom
 picom &

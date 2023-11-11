@@ -20,6 +20,7 @@ vim.keymap.set({ "n", "i" }, "<A-k>", "<Nop>", { desc = "Move up" })
 -- run make and copen
 vim.keymap.set("n", "<leader><CR>", ":make | :copen <CR>", { desc = "Run make (use :make and :copen)" })
 
+-- Resize windows
 vim.keymap.set("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 vim.keymap.set("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
@@ -27,3 +28,7 @@ vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase w
 
 -- run rest.nvim
 vim.keymap.set("n", "<A-r>", ":lua require('rest-nvim').run()<CR>", { desc = "Run rest.nvim" })
+
+-- folds
+vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "open all folds" })
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "close all folds" })

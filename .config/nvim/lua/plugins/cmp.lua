@@ -8,6 +8,25 @@ return {
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
   },
+  keys = {
+    {
+      "<C-j>",
+      function()
+        local cmp = require("cmp")
+        local luasnip = require("luasnip")
+        cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.jumpable() then
+            luasnip.jump()
+          else
+            fallback()
+          end
+        end)
+      end,
+      mode = { "s", "i" },
+    },
+  },
   opts = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local luasnip = require("luasnip")
