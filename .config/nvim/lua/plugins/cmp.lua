@@ -27,7 +27,7 @@ return {
       mode = { "s", "i" },
     },
   },
-  opts = function()
+  opts = function(_, opts)
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local luasnip = require("luasnip")
     local cmp = require("cmp")
