@@ -1,3 +1,4 @@
+. "$HOME/.cargo/env"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -162,15 +163,13 @@ if [[ $(uname -a | grep ARCH | wc -l) -eq 1 ]]; then
   alias vim="nvim"
   alias vi="nvim"
 else
-  source ~/powerlevel10k/powerlevel10k.zsh-theme
-  alias nvim='/home/zero/downloads/nvim-linux64/bin/nvim'
-  . "$HOME/.cargo/env"
+  # source ~/powerlevel10k/powerlevel10k.zsh-theme
+  # alias nvim='/home/zero/downloads/nvim-linux64/bin/nvim'
 fi
 
 alias ls="lsd"
 alias cat="bat"
 alias catn="/bin/cat"
-alias poetry="~/.local/share/pypoetry/venv/bin/poetry"
 
 docker_start ()
 {
@@ -184,9 +183,6 @@ docker_start ()
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
-[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
+export PATH="$PATH:/home/zero/.local/bin"

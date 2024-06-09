@@ -30,5 +30,5 @@ vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase w
 vim.keymap.set("n", "<A-r>", ":lua require('rest-nvim').run()<CR>", { desc = "Run rest.nvim" })
 
 -- folds
-vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "open all folds" })
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "close all folds" })
+-- vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "open all folds" })
+-- vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "close all folds" })
