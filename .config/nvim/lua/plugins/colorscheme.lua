@@ -100,8 +100,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "carbonfox",
-      colorscheme = "lackluster-hack",
+      colorscheme = "carbonfox",
     },
   },
 }

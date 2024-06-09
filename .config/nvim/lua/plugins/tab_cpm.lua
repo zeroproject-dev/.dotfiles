@@ -38,7 +38,11 @@ return {
         end
       end, { "i", "s" }),
       ["<C-Space>"] = cmp.mapping.complete(),
-      ["<ESC>"] = cmp.mapping.close(),
+      ["<ESC>"] = cmp.mapping(function(fallback)
+        cmp.mapping.close()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "n", true)
+        fallback()
+      end, { "i", "s" }),
     })
   end,
 }
