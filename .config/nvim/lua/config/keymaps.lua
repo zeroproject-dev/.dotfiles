@@ -29,6 +29,34 @@ vim.keymap.set("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase w
 -- run rest.nvim
 vim.keymap.set("n", "<A-r>", ":lua require('rest-nvim').run()<CR>", { desc = "Run rest.nvim" })
 
--- folds
--- vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "open all folds" })
--- vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "close all folds" })
+vim.keymap.set("n", "gf", ":GoToFile<cr>", nil)
+vim.keymap.set("n", "gl", ":GoToFile<cr>", nil)
+
+-- local function get_loc()
+--   local elems = vim.fn.getqflist({
+--     efm = vim.o.errorformat,
+--     lines = { vim.api.nvim_get_current_line() },
+--   }).items
+--
+--   print("Elements:", vim.fn.json_encode(elems))
+--
+--   if #elems < 1 then
+--     return false
+--   else
+--     return true, elems[1].bufnr, elems[1].lnum, elems[1].col
+--   end
+-- end
+--
+-- local function jump(buffer, line, col)
+--   vim.api.nvim_win_set_buf(0, buffer)
+--   vim.api.nvim_win_set_cursor(0, { line, col })
+-- end
+--
+-- vim.keymap.set("n", "gF", function()
+--   local ok, bufr, line, col = get_loc()
+--   -- local json_output = vim.fn.json_encode({ ok = ok, bufr = bufr, line = line, col = col })
+--   -- print(json_output)
+--   if ok then
+--     jump(bufr, line, col)
+--   end
+-- end, { desc = "Jump to error location" })
