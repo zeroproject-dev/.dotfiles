@@ -186,3 +186,12 @@ eval "$(pyenv init -)"
 eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
 export PATH="$PATH:/home/zero/.local/bin"
+export PATH="$PATH:/home/zero/bin"
+
+# GO ENVIRONMENT
+export GOROOT="$HOME/bin/go"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+
+
+
