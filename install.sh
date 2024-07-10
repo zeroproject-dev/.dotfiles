@@ -6,7 +6,7 @@ username="$USER"
 userhome="$HOME"
 
 command_exists() {
-	command -v "$1" >/dev/null 2>&1
+  command -v "$1" >/dev/null 2>&1
 }
 
 sudo pacman -S --needed base-devel
@@ -16,15 +16,17 @@ BASE_BSPWM="bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manag
 TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty starship"
 CODE="tmux neovim clang ttf-cascadia-code jq tidy"
 UTILS="remmina freerdp ranger ueberzug xorg-xclipboard xclip"
+NEW="xorg-xrandr pavucontrol lazygit i3lock-fancy github-cli ripgrep less pyenv"
 
 if ! command_exists "git"; then
-	sudo pacman -S --noconfirm git
+  sudo pacman -S --noconfirm git
 fi
 
 if ! command_exists "bspwm"; then
-	sudo pacman -S --noconfirm $BASE_BSPWM
-	install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
-	install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
+  sudo pacman -S --noconfirm $BASE_BSPWM
+  sudo pacman -S --noconfirm $NEW
+  install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
+  install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 fi
 
 sudo pacman -S --noconfirm $TERMINAL $CODE $UTILS
@@ -32,8 +34,8 @@ sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-cros
 
 # Installing rust and dependencies
 if ! command_exists "cargo"; then
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	source $userhome/.cargo/env
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  source "$userhome/.cargo/env"
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -43,9 +45,9 @@ cargo install tree-sitter-cli
 
 # installing paru (AUR helper)
 if ! command_exists "paru"; then
-	git clone https://aur.archlinux.org/paru.git /tmp
-	cd /tmp/paru
-	makepkg -si
+  git clone https://aur.archlinux.org/paru.git /tmp/paru
+  cd /tmp/paru
+  makepkg -si
 fi
 
 # Installing configuration
@@ -76,3 +78,5 @@ echo ""
 echo "If android emulators of android studio goes slow execute:"
 echo "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
 echo "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"
+
+# add developer dependencies like go, c#, nodejs, python, java, etc for choose like an interactive menu

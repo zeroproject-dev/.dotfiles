@@ -158,13 +158,14 @@ export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 export PKG_CONFIG_LIBDIR=/usr/lib/pkgconfig
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
-if [[ $(uname -a | grep ARCH | wc -l) -eq 1 ]]; then
-  # source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+if [[ $(uname -a | grep -ci ARCH) -eq 1 ]]; then
   alias vim="nvim"
   alias vi="nvim"
 else
-  # source ~/powerlevel10k/powerlevel10k.zsh-theme
-  # alias nvim='/home/zero/downloads/nvim-linux64/bin/nvim'
+  # GO ENVIRONMENT
+  export GOROOT="$HOME/bin/go"
+  export GOPATH="$HOME/go"
+  export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 fi
 
 alias ls="lsd"
@@ -187,11 +188,4 @@ eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
 export PATH="$PATH:/home/zero/.local/bin"
 export PATH="$PATH:/home/zero/bin"
-
-# GO ENVIRONMENT
-export GOROOT="$HOME/bin/go"
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-
-
 
