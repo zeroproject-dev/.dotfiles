@@ -16,7 +16,7 @@ BASE_BSPWM="bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manag
 TERMINAL="alacritty zsh lsd bat ttf-victor-mono-nerd kitty starship"
 CODE="tmux neovim clang ttf-cascadia-code jq tidy"
 UTILS="remmina freerdp ranger ueberzug xorg-xclipboard xclip"
-NEW="xorg-xrandr pavucontrol lazygit i3lock-fancy github-cli ripgrep less pyenv"
+NEW="xorg-xrandr pavucontrol lazygit i3lock-fancy github-cli ripgrep less pyenv lxappearance man-db sddm"
 
 if ! command_exists "git"; then
   sudo pacman -S --noconfirm git
@@ -25,8 +25,6 @@ fi
 if ! command_exists "bspwm"; then
   sudo pacman -S --noconfirm $BASE_BSPWM
   sudo pacman -S --noconfirm $NEW
-  install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
-  install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
 fi
 
 sudo pacman -S --noconfirm $TERMINAL $CODE $UTILS
@@ -42,18 +40,28 @@ export PATH="$HOME/.cargo/bin:$PATH"
 cargo install dotz
 cargo install fnm
 cargo install tree-sitter-cli
+cargo install --git https://github.com/Morganamilo/paru.git
+
+# Installing nodejs
+fnm use --install-if-missing $(curl -sL https://nodejs.org/dist/latest/SHASUMS256.txt | grep "node-v" | awk '{print $2}' | sed 's/node-v//' | head -1 | sed 's/\..*//' | xargs)
 
 # installing paru (AUR helper)
 if ! command_exists "paru"; then
-  git clone https://aur.archlinux.org/paru.git /tmp/paru
-  cd /tmp/paru
-  makepkg -si
+  echo "No paru found"
+  # git clone https://aur.archlinux.org/paru.git /tmp/paru
+  # cd /tmp/paru
+  # makepkg -si
 fi
 
 # Installing configuration
 rm -rf $userhome/.dotfiles
-dotz repo https://github.com/zeroproject-0/.dotfiles.git $userhome/.dotfiles $userhome
+dotz repo https://github.com/zeroproject-dev/.dotfiles.git $userhome/.dotfiles $userhome
 cd $userhome/.dotfiles && git submodule update --init --recursive
+
+install -Dm755 $HOME/.dotfiles/.config/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
+install -Dm644 $HOME/.dotfiles/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
+
+dotz -f $HOME/.dotfiles
 
 paru -S zomodoro visual-studio-code-bin microsoft-edge-stable emote colorpicker
 
@@ -65,6 +73,8 @@ git clone https://github.com/tmux-plugins/tpm $userhome/.tmux/plugins/tpm
 export RUNZSH=no
 rm -rf $userhome/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+sudo systmectl enable sddm
 
 echo "Installation are finished"
 echo "------------------------------------"
