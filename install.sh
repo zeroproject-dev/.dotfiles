@@ -51,6 +51,26 @@ print_confirmation() {
   fi
 }
 
+# Install a package
+#
+# @param package_name string The name of the package
+# @param package_command string The command to install the package
+# @param post_install_commands string The commands to run after the package is installed
+# @return void
+install_package() {
+  package_name=$1
+  package_command=$2
+  post_install_commands=$3
+
+  if print_confirmation "Do you want to install $package_name? (y/n)"; then
+    print_green "Installing $package_name"
+    eval "$package_command"
+    eval "$post_install_commands"
+  else
+    print_blue "Skip $package_name installation"
+  fi
+}
+
 # END HELPERS
 
 # Install required packages
@@ -98,7 +118,7 @@ fi
 # Installing bspwm
 print_green "Installing environment (bspwm)"
 
-sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet polkit-gnome xorg-xsetroot playerctl pamixer xorg-xrandr pavucontrol xorg-xclipboard xclip
+sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet polkit-gnome xorg-xsetroot playerctl pamixer xorg-xrandr pavucontrol xorg-xclipboard xclip unzip htop fastfetch
 
 paru -Sy --noconfirm zomodoro emote colorpicker i3lock-fancy-rapid-git
 
@@ -139,26 +159,13 @@ git clone https://github.com/tmux-plugins/tpm "$userhome/.tmux/plugins/tpm"
 print_blue "Installing code packages"
 
 # Visual studio code
-if print_confirmation "Do you want to install visual studio code? (y/n)"; then
-  print_green "Installing visual studio code"
-  paru -Sy --noconfirm visual-studio-code-bin
-else
-  print_blue "skip visual studio code installation"
-fi
+install_package "visual studio code" "paru -Sy --noconfirm visual-studio-code-bin" ""
 
-if print_confirmation "Do you want to install neovim? (y/n)"; then
-  print_green "Installing neovim"
-  sudo pacman -S --noconfirm neovim ripgrep jq tidy lazygit fd
-else
-  print_blue "skip neovim installation"
-fi
+install_package "Neovim" "sudo pacman -S --noconfirm neovim ripgrep jq tidy lazygit fd" ""
 
-if print_confirmation "Do you want to install github cli? (y/n)"; then
-  print_green "Installing github cli"
-  sudo pacman -S --noconfirm github-cli
-else
-  print_blue "skip github cli installation"
-fi
+install_package "Android Studio" "paru -Sy --noconfirm android-studio" "echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
+
+install_package "Github CLI" "sudo pacman -S --noconfirm github-cli" ""
 
 if print_confirmation "Do you want to install nodejs? (y/n)"; then
   print_green "Installing nodejs"
@@ -183,69 +190,29 @@ else
   print_blue "skip python installation"
 fi
 
-if print_confirmation "Do you want to install C? (y/n)"; then
-  print_green "Installing C"
-  sudo pacman -S --noconfirm gcc gdb clang lldb
-else
-  print_blue "skip C installation"
-fi
+install_package "C/C++" "sudo pacman -S --noconfirm gcc gdb clang lldb" ""
 
-if print_confirmation "Do you want to install golang? (y/n)"; then
-  print_green "Installing golang"
-  sudo pacman -S --noconfirm go
-else
-  print_blue "skip golang installation"
-fi
+install_package "Go lang" "sudo pacman -S --noconfirm go" ""
 
-if print_confirmation "Do you want to install docker? (y/n)"; then
-  print_green "Installing docker"
-  sudo pacman -S --noconfirm docker docker-compose
-  sudo systemctl enable docker
-  sudo usermod -aG docker "$username"
-else
-  print_blue "skip docker installation"
-fi
+install_package "Docker" "sudo pacman -S --noconfirm docker docker-compose" "sudo systemctl enable docker && sudo usermod -aG docker $username"
 
 print_blue "Installing utilities"
 
-if print_confirmation "Do you want to install remmina? (y/n)"; then
-  print_green "Installing remmina"
-  sudo pacman -S --noconfirm remmina freerdp
-else
-  print_blue "skip remmina installation"
-fi
+install_package "Remmina" "sudo pacman -S --noconfirm remmina freerdp" ""
 
-if print_confirmation "Do you want to install vlc? (y/n)"; then
-  print_green "Installing vlc"
-  sudo pacman -S --noconfirm vlc
-else
-  print_blue "skip vlc installation"
-fi
+install_package "VLC player" "sudo pacman -S --noconfirm vlc" ""
 
-# Microsoft edge
-if print_confirmation "Do you want to install microsoft edge? (y/n)"; then
-  print_green "Installing microsoft edge"
-  paru -Sy --noconfirm microsoft-edge-stable
-else
-  print_blue "skip microsoft edge installation"
-fi
+install_package "Microsoft Edge" "paru -Sy --noconfirm microsoft-edge-stable" ""
 
-if print_confirmation "Do you want to install firefox? (y/n)"; then
-  print_green "Installing firefox"
-  sudo pacman -S --noconfirm firefox
-else
-  print_blue "skip firefox installation"
-fi
+install_package "Firefox" "sudo pacman -S --noconfirm firefox" ""
 
 print_blue "Installing display manager"
 
-if print_confirmation "Do you want to install sddm? (y/n)"; then
-  print_green "Installing sddm"
-  sudo pacman -S --noconfirm sddm
-  sudo systemctl enable sddm
-else
-  print_blue "skip sddm installation"
-fi
+install_package "sddm" "sudo pacman -S --noconfirm sddm" "
+  sudo systemctl enable sddm;
+  paru -Sy --noconfirm sddm-sugar-dark;
+  sudo sed -i 's/Current=/Current=sugar-dark/' /usr/lib/sddm/sddm.conf.d/default.conf
+"
 
 # END Install required packages
 
@@ -256,6 +223,6 @@ print_blue "If you are in asus laptop see: https://asus-linux.org/wiki/arch-guid
 echo ""
 print_blue "For install tmux plugins enter a tmux session and press CTRL+b and shift+i"
 echo ""
-print_blue "If your android emulators of android studio goes slow execute:"
+print_blue "If your select install android studio the next line was executed: "
 print_blue "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
 print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"
