@@ -61,7 +61,7 @@ case ${chosen} in
   run_cmd --reboot
   ;;
 "$lock")
-  i3lock-fancy
+  i3lock-fancy-rapid 5 3
   ;;
 "$suspend")
   run_cmd --suspend

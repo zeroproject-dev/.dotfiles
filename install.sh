@@ -120,11 +120,11 @@ print_green "Installing environment (bspwm)"
 
 sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet polkit-gnome xorg-xsetroot playerctl pamixer xorg-xrandr pavucontrol xorg-xclipboard xclip unzip htop fastfetch
 
-paru -Sy --noconfirm zomodoro emote colorpicker i3lock-fancy-rapid-git
+paru -Sy --noconfirm zomodoro x11-emoji-picker colorpicker i3lock-fancy-rapid-git
 
 #TODO: Change for st
 print_green "Installing terminal tools"
-sudo pacman -S --noconfirm alacritty zsh lsd bat kitty starship tmux man-db ranger ueberzug
+sudo pacman -S --noconfirm alacritty zsh lsd bat kitty starship tmux man-db ranger ueberzug zoxide fzf
 
 print_green "Installing fonts"
 sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-cascadia-code ttf-victor-mono-nerd ttf-hack-nerd
@@ -163,7 +163,7 @@ install_package "visual studio code" "paru -Sy --noconfirm visual-studio-code-bi
 
 install_package "Neovim" "sudo pacman -S --noconfirm neovim ripgrep jq tidy lazygit fd" ""
 
-install_package "Android Studio" "paru -Sy --noconfirm android-studio" "echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
+install_package "Android Studio" "paru -Sy --noconfirm android-studio" ""
 
 install_package "Github CLI" "sudo pacman -S --noconfirm github-cli" ""
 
@@ -192,9 +192,15 @@ fi
 
 install_package "C/C++" "sudo pacman -S --noconfirm gcc gdb clang lldb" ""
 
+install_package "C#" "paru -Sy --noconfirm dotnet-runtime dotnet-sdk aspnet-runtime" ""
+
 install_package "Go lang" "sudo pacman -S --noconfirm go" ""
 
-install_package "Docker" "sudo pacman -S --noconfirm docker docker-compose" "sudo systemctl enable docker && sudo usermod -aG docker $username"
+install_package "Java" "sudo pacman -Sy --noconfirm jdk-openjdk && sudo pacman -Su --noconfirm" ""
+
+install_package "Flutter" "paru -Sy --noconfirm flutter" ""
+
+install_package "Docker" "sudo pacman -S --noconfirm docker docker-compose && paru -Sy --noconfirm lazydocker" "sudo systemctl enable docker && sudo usermod -aG docker $username"
 
 print_blue "Installing utilities"
 
@@ -223,6 +229,8 @@ print_blue "If you are in asus laptop see: https://asus-linux.org/wiki/arch-guid
 echo ""
 print_blue "For install tmux plugins enter a tmux session and press CTRL+b and shift+i"
 echo ""
-print_blue "If your select install android studio the next line was executed: "
+print_blue "I recommend follow this instrutions for install kvm: https://gist.github.com/tatumroaquin/c6464e1ccaef40fd098a4f31db61ab22"
+print_blue "and install for network management virt-manager: 'paru -Sy --noconfirm dnsmasq'"
+print_blue "If you selected android studio and you have btrfs system: "
 print_blue "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
 print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"

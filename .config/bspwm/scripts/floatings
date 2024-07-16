@@ -1,0 +1,7 @@
+#!/bin/bash
+
+window_name=$(xprop -id "$1" _NET_WM_NAME | awk '{print $NF}' | sed 's/\"//g')
+
+if [ "$window_name" == "Emulator" ]; then
+  echo "state=floating center=true rectangle=400x900+0+0 desktop=^1"
+fi

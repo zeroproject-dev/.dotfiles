@@ -36,8 +36,11 @@ bspc rule -a Screenkey manage=off
 # Custom initialize
 setxkbmap -layout us -variant altgr-intl # change keyboard layout
 # Random wallpaper
-# feh --randomize --bg-fill "${HOME}/.dotfiles/wallpapers/" &
-feh --bg-fill "${HOME}/.dotfiles/wallpapers/wallpaper24.jpg" &
+# RANDOM_WALLPAPER=$(ls -l "${HOME}/.dotfiles/wallpapers" | shuf -n 1 | awk '{print $11}' | xargs)
+# feh --bg-fill "${HOME}/.dotfiles/wallpapers/$RANDOM_WALLPAPER" &
+feh --bg-fill "${HOME}/.dotfiles/wallpapers/wallpaper26.jpg" &
+
+bspc config external_rules_command "${HOME}/.dotfiles/.config/bspwm/scripts/floatings"
 
 pkill picom
 picom &

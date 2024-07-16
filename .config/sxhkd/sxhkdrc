@@ -7,7 +7,7 @@ super + Return
   kitty
 
 # program launcher
-alt + @space
+super + @space
 	rofi -show drun -show-icons
 
 # make sxhkd reload its configuration files:
@@ -34,12 +34,12 @@ super + m
 	bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+# super + y
+# 	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
+# super + g
+# 	bspc node -s biggest.window
 
 #
 # state/flags
@@ -62,12 +62,12 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# super + {p,b,comma,period}
+	# bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
+# super + {_,shift + }c
+	# bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -78,10 +78,10 @@ super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
@@ -120,10 +120,7 @@ super + ctrl + {h,j,k,l}
 
 # Custom bindings
 # Browser
-super + shift + f
-	epiphany --incognito-mode
-
-super + n
+super + b
 	microsoft-edge-stable
 
 # Volume
@@ -175,7 +172,7 @@ super + shift + s
   scrot 'screenshot-%Y-%m-%d_%T.png' -s --line mode=edge -e 'mv $f $$HOME/Pictures && xclip -selection clipboard -target image/png -i $$HOME/Pictures/$f && dunstify -a "Screenshot" -u low -t 1500 -h string:x-dunst-stack-tag:screenshot $f &'
 
 # Colorpicker
-super + ctrl + s
+super + shift + c
   colorpicker --short --one-shot --preview | xclip -selection clipboard
 
 # Tab
@@ -195,3 +192,6 @@ super + alt + p
 # Stream subtitles
 # super + ctrl + s
 #   /home/zero/Documentos/stream-subtitles/output/main
+
+super + @period
+  QT_SCALE_FACTOR=1.25 emoji-picker
