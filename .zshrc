@@ -192,6 +192,8 @@ eval "$(zoxide init zsh)"
 
 t ()
 {
+  local bfor=$(pwd)
+
   if [ -z "$1" ]; then
     local ZOXIDE_RESULT=$(zoxide query -l | fzf --reverse)
   else
@@ -223,4 +225,6 @@ t ()
       tmux switch-client -t $SESSION
     fi
   fi
+
+  cd $bfor
 }

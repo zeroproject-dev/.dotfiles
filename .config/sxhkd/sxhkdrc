@@ -195,3 +195,6 @@ super + alt + p
 
 super + @period
   QT_SCALE_FACTOR=1.25 emoji-picker
+
+super + alt + @period
+  boomer

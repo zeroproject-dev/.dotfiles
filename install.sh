@@ -120,7 +120,7 @@ print_green "Installing environment (bspwm)"
 
 sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet polkit-gnome xorg-xsetroot playerctl pamixer xorg-xrandr pavucontrol xorg-xclipboard xclip unzip htop fastfetch
 
-paru -Sy --noconfirm zomodoro x11-emoji-picker colorpicker i3lock-fancy-rapid-git
+paru -Sy --noconfirm zomodoro x11-emoji-picker colorpicker i3lock-fancy-rapid-git boomer-git
 
 #TODO: Change for st
 print_green "Installing terminal tools"
