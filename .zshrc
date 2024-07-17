@@ -150,7 +150,7 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # Dev dependencies
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/texlive/2024/bin/x86_64-linux:$HOME/.cargo/bin:$PATH"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig
@@ -228,3 +228,5 @@ t ()
 
   cd $bfor
 }
+
+

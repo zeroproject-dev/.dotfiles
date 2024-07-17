@@ -122,6 +122,9 @@ sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot duns
 
 paru -Sy --noconfirm zomodoro x11-emoji-picker colorpicker i3lock-fancy-rapid-git boomer-git
 
+# Rofi as dmenu
+sudo ln -s /usr/bin/rofi /usr/bin/dmenu
+
 #TODO: Change for st
 print_green "Installing terminal tools"
 sudo pacman -S --noconfirm alacritty zsh lsd bat kitty starship tmux man-db ranger ueberzug zoxide fzf
@@ -229,8 +232,11 @@ print_blue "If you are in asus laptop see: https://asus-linux.org/wiki/arch-guid
 echo ""
 print_blue "For install tmux plugins enter a tmux session and press CTRL+b and shift+i"
 echo ""
+print_blue "For install latex: https://tug.org/texlive/quickinstall.html"
 print_blue "I recommend follow this instrutions for install kvm: https://gist.github.com/tatumroaquin/c6464e1ccaef40fd098a4f31db61ab22"
 print_blue "and install for network management virt-manager: 'paru -Sy --noconfirm dnsmasq'"
 print_blue "If you selected android studio and you have btrfs system: "
 print_blue "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
 print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"
+
+#TODO: add zathura pdf
