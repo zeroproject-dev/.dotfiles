@@ -16,5 +16,7 @@ polybar rightbar -r 2>&1 | tee -a /tmp/polybar.log &
 disown
 polybar traybar -r 2>&1 | tee -a /tmp/polybar.log &
 disown
+polybar namebar -r 2>&1 | tee -a /tmp/polybar.log &
+disown
 
 echo "Polybar launched..."
