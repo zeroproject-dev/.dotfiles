@@ -15,6 +15,6 @@ return {
   },
   {
     "rcarriga/nvim-notify",
-    opts = { timeout = 1000 },
+    opts = { timeout = 3000 },
   },
 }

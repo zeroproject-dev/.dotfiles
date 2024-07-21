@@ -169,7 +169,7 @@ alt + F6
 
 # Screenshots
 super + shift + s
-  ${HOME}/.dotfiles/.config/sxhkd/scripts/screenshot.sh
+  bash $HOME/.dotfiles/.config/sxhkd/scripts/screenshot.sh
   # scrot 'screenshot-%Y-%m-%d_%T.png' -s -f -e 'mv $f $$HOME/Pictures && xclip -selection clipboard -target image/png -i $$HOME/Pictures/$f && dunstify -a "Screenshot" -u low -t 1500 -h string:x-dunst-stack-tag:screenshot $f &'
 
 # Colorpicker
@@ -199,3 +199,9 @@ super + @period
 
 super + alt + @period
   boomer
+
+super + alt + m
+  scrcpy --disable-screensaver --kill-adb-on-close -w --tcpip=192.168.0.9:5555 --turn-screen-off
+
+super + alt + ctrl + m
+  scrcpy --disable-screensaver --kill-adb-on-close -w --tcpip=192.168.0.106:5555 --turn-screen-off

@@ -229,4 +229,7 @@ t ()
   cd $bfor
 }
 
+mobile() {
+  scrcpy --disable-screensaver --kill-adb-on-close -w --tcpip=192.168.0.9:5555 --turn-screen-off
+}
 

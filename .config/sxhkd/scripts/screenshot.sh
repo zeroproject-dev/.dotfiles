@@ -1,15 +1,19 @@
 #!/bin/bash
 
-set -e
-
 DEFAULT_DIR=${1-"$HOME/Pictures/Screenshots"}
 NAME=$(date '+screenshot-%Y-%m-%d_%T.png')
-
-echo "default dir: $DEFAULT_DIR"
+TMP="/tmp/$NAME"
 
 mkdir -p "$DEFAULT_DIR"
 
-scrot "$NAME" --delay=0 -s -f --line mode=classic -e "mv \$f /tmp/$NAME && xclip -selection clipboard -target image/png -i /tmp/$NAME"
+sleep 0.2
+if ! scrot "$NAME" -s -f --line mode=classic 2>&1; then
+  exit 1
+fi
+
+mv "$HOME/$NAME" "$TMP"
+
+xclip -selection clipboard -target image/png -i "$TMP"
 
 ACTION=$(dunstify --action="save,Save" --action="discard,Discard" -a "Screenshot" -u low -t 3000 -h string:x-dunst-stack-tag:screenshot "$NAME")
 
@@ -19,21 +23,21 @@ case "$ACTION" in
   new_path=$(echo -e "\nNot select an option and enter new path\nDefault path:\n\t$DEFAULT_DIR/$NAME" | rofi -dmenu)
   if [ "$new_path" != "" ]; then
     if [ "${new_path:0:1}" == "/" ]; then
-      mv "/tmp/$NAME" "$(realpath -m "$new_path/$NAME")"
+      mv "$TMP" "$(realpath -m "$new_path/$NAME")"
     else
-      mv "/tmp/$NAME" "$(realpath -m "$DEFAULT_DIR/$new_path/$NAME")"
+      mv "$TMP" "$(realpath -m "$DEFAULT_DIR/$new_path/$NAME")"
     fi
   else
-    mv "/tmp/$NAME" "$DEFAULT_DIR/$NAME"
+    mv "$TMP" "$DEFAULT_DIR/$NAME"
   fi
   ;;
 "discard")
-  rm -rf "/tmp/$NAME"
+  rm -rf "$TMP"
   ;;
 "2")
-  rm -rf "/tmp/$NAME"
+  rm -rf "$TMP"
   ;;
 "1")
-  rm -rf "/tmp/$NAME"
+  rm -rf "$TMP"
   ;;
 esac
