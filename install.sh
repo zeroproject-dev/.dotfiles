@@ -201,7 +201,7 @@ install_package "Go lang" "sudo pacman -S --noconfirm go" ""
 
 install_package "Java" "sudo pacman -Sy --noconfirm jdk-openjdk && sudo pacman -Su --noconfirm" ""
 
-install_package "Flutter" "paru -Sy --noconfirm flutter" ""
+install_package "Flutter" "paru -Sy --noconfirm fvm" ""
 
 install_package "Docker" "sudo pacman -S --noconfirm docker docker-compose && paru -Sy --noconfirm lazydocker" "sudo systemctl enable docker && sudo usermod -aG docker $username"
 

@@ -173,11 +173,13 @@ alias catn="/bin/cat"
 
 docker_start ()
 {
+  bfo=$(pwd)
   cd ~/docker/$1
   if [ $# -ge 2 ] && [ "$2" = "clear" ]; then
     sudo rm -rf ~/docker/$1/data
   fi
   docker compose up --remove-orphans --force-recreate --build
+  cd "$bfo"
 }
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -233,3 +235,11 @@ mobile() {
   scrcpy --disable-screensaver --kill-adb-on-close -w --tcpip=192.168.0.9:5555 --turn-screen-off
 }
 
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/zero/.dart-cli-completion/zsh-config.zsh ]] && . /home/zero/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+alias flutter="fvm flutter"
+alias dart="fvm dart"
