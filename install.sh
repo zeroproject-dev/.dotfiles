@@ -240,3 +240,9 @@ print_blue "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeature
 print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"
 
 #TODO: add zathura pdf
+# add noisetorch
+# add dbeaver
+# add obs
+# add thunar
+# add virtualBox
+# add VirtualManager if its possible

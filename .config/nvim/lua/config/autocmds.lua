@@ -17,8 +17,17 @@ local make_files_commands = {
 local output_bufnr = vim.api.nvim_create_buf(false, true)
 vim.api.nvim_buf_set_name(output_bufnr, "Output Buffer")
 vim.bo[output_bufnr].bufhidden = "hide"
+vim.bo[output_bufnr].buftype = "nofile"
+vim.api.nvim_buf_set_keymap(output_bufnr, "n", "q", ":q<CR>", { noremap = true, silent = true })
 
 local current_job_id = nil
+
+local kill_current_job = function()
+  if current_job_id then
+    vim.fn.jobstop(current_job_id)
+    current_job_id = nil
+  end
+end
 
 for _, v in ipairs(make_files_commands) do
   for _, pattern in ipairs(v[1]) do
@@ -28,6 +37,7 @@ for _, v in ipairs(make_files_commands) do
         local command = vim.fn.expandcmd(table.concat(v[2], " "))
         vim.api.nvim_buf_set_keymap(0, "n", "<leader><Enter>", "", {
           callback = function()
+            kill_current_job()
             vim.api.nvim_buf_set_lines(output_bufnr, 0, -1, false, { "output:" })
 
             local append_data = function(_, data)
@@ -50,17 +60,15 @@ for _, v in ipairs(make_files_commands) do
             vim.api.nvim_create_autocmd("BufWinLeave", {
               buffer = output_bufnr,
               once = true,
-              callback = function()
-                if current_job_id then
-                  vim.fn.jobstop(current_job_id)
-                  vim.api.nvim_out_write("Process stopped\n")
-                  current_job_id = nil
-                end
-              end,
+              callback = kill_current_job,
             })
 
-            vim.cmd("vsplit")
-            vim.cmd("buffer " .. output_bufnr)
+            local buf_number = vim.fn.bufwinnr(output_bufnr)
+
+            if buf_number == -1 then
+              vim.cmd("vsplit")
+              vim.cmd("buffer " .. output_bufnr)
+            end
           end,
           noremap = true,
           silent = true,
