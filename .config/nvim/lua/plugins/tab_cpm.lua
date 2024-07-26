@@ -51,9 +51,9 @@ return {
   {
     "L3MON4D3/LuaSnip",
     opts = {
-      history = true,
-      region_check_events = "CursorHold,InsertLeave",
-      delete_check_events = "TextChanged",
+      history = false,
+      region_check_events = { "CursorHold", "InsertLeave" },
+      delete_check_events = { "TextChanged", "TextChangedI" },
     },
   },
 }

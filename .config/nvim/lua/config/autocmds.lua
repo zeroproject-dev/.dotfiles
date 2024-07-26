@@ -85,3 +85,49 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<localLeader><enter>", "<CMD>VimtexCompile<CR>")
   end,
 })
+
+vim.filetype.add({
+  extension = {
+    ["http"] = "http",
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "http",
+  callback = function()
+    vim.keymap.set(
+      "n",
+      "<leader><enter>",
+      ":lua require('kulala').run()<CR>",
+      { noremap = true, silent = true, desc = "Run http request" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "<leader>yy",
+      ":lua require('kulala').copy()<CR>",
+      { noremap = true, silent = true, desc = "Copy curl command" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "<leader>tt",
+      ":lua require('kulala').toggle_view()<CR>",
+      { noremap = true, silent = true, desc = "Toggle View" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "<leader>n",
+      ":lua require('kulala').jump_next()<CR>",
+      { noremap = true, silent = true, desc = "Go next request" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "<leader>N",
+      ":lua require('kulala').jump_prev()<CR>",
+      { noremap = true, silent = true, desc = "Go previous request" }
+    )
+  end,
+})
