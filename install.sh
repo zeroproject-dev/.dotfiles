@@ -125,9 +125,10 @@ paru -Sy --noconfirm zomodoro x11-emoji-picker colorpicker i3lock-fancy-rapid-gi
 # Rofi as dmenu
 sudo ln -s /usr/bin/rofi /usr/bin/dmenu
 
-#TODO: Change for st
+#NOTE:
+# Removed: alacritty ranger ueberzug
 print_green "Installing terminal tools"
-sudo pacman -S --noconfirm alacritty zsh lsd bat kitty starship tmux man-db ranger ueberzug zoxide fzf
+sudo pacman -S --noconfirm zsh lsd bat kitty starship tmux man-db zoxide fzf yazi
 
 print_green "Installing fonts"
 sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-cascadia-code ttf-victor-mono-nerd ttf-hack-nerd
@@ -156,8 +157,6 @@ dotz -f "$userhome/.dotfiles"
 print_green "Installing tmux tmp"
 rm -rf "$userhome/.tmux/plugins/tpm"
 git clone https://github.com/tmux-plugins/tpm "$userhome/.tmux/plugins/tpm"
-
-#TODO: Install archlinux tweak tool
 
 print_blue "Installing code packages"
 
@@ -215,6 +214,16 @@ install_package "Microsoft Edge" "paru -Sy --noconfirm microsoft-edge-stable" ""
 
 install_package "Firefox" "sudo pacman -S --noconfirm firefox" ""
 
+install_package "NoiseTorch" "paru -S --noconfirm noisetorch" ""
+
+install_package "Dbeaver" "paru -S --noconfirm dbeaver" ""
+
+install_package "Thunar filemanager" "paru -S --noconfirm thunar thunar-volman" ""
+
+install_package "OBS Studio" "paru -S --noconfirm obs-studio" ""
+
+install_package "Zathura" "paru -S --noconfirm zathura zathura-pdf-poppler" "xdg-mime default org.pwmt.zathura.desktop application/pdf"
+
 print_blue "Installing display manager"
 
 install_package "sddm" "sudo pacman -S --noconfirm sddm" "
@@ -239,10 +248,6 @@ print_blue "If you selected android studio and you have btrfs system: "
 print_blue "\$  echo \"QuickbootFileBacked = off\" >> ~/.android/advancedFeatures.ini"
 print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_emulator_is_unusable_on_btrfs_partition/"
 
-#TODO: add zathura pdf
-# add noisetorch
-# add dbeaver
-# add obs
-# add thunar
+#TODO:
 # add virtualBox
 # add VirtualManager if its possible

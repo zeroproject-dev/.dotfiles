@@ -182,7 +182,7 @@ alt + Tab
 
 # ranger
 super + e
-  kitty --hold sh -c "ranger"
+  kitty --hold sh -c "yazi"
 
 # Custom programs
 
