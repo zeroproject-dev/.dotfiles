@@ -241,5 +241,11 @@ mobile() {
 [[ -f /home/zero/.dart-cli-completion/zsh-config.zsh ]] && . /home/zero/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
-alias flutter="fvm flutter"
-alias dart="fvm dart"
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

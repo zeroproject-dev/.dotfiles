@@ -128,7 +128,7 @@ sudo ln -s /usr/bin/rofi /usr/bin/dmenu
 #NOTE:
 # Removed: alacritty ranger ueberzug
 print_green "Installing terminal tools"
-sudo pacman -S --noconfirm zsh lsd bat kitty starship tmux man-db zoxide fzf yazi
+sudo pacman -S --noconfirm zsh lsd bat kitty starship tmux man-db yazi ffmpegthumbnailer p7zip jq poppler fd ripgrep fzf zoxide imagemagick
 
 print_green "Installing fonts"
 sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-cascadia-code ttf-victor-mono-nerd ttf-hack-nerd
@@ -163,7 +163,7 @@ print_blue "Installing code packages"
 # Visual studio code
 install_package "visual studio code" "paru -Sy --noconfirm visual-studio-code-bin" ""
 
-install_package "Neovim" "sudo pacman -S --noconfirm neovim ripgrep jq tidy lazygit fd" ""
+install_package "Neovim" "sudo pacman -S --noconfirm neovim tidy lazygit" ""
 
 install_package "Android Studio" "paru -Sy --noconfirm android-studio" ""
 
@@ -214,7 +214,7 @@ install_package "Microsoft Edge" "paru -Sy --noconfirm microsoft-edge-stable" ""
 
 install_package "Firefox" "sudo pacman -S --noconfirm firefox" ""
 
-install_package "NoiseTorch" "paru -S --noconfirm noisetorch" ""
+install_package "NoiseTorch" "paru -S --noconfirm noisetorch-bin" ""
 
 install_package "Dbeaver" "paru -S --noconfirm dbeaver" ""
 
