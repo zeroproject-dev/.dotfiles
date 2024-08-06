@@ -231,11 +231,6 @@ t ()
   cd $bfor
 }
 
-mobile() {
-  scrcpy --disable-screensaver --kill-adb-on-close -w --tcpip=192.168.0.9:5555 --turn-screen-off
-}
-
-
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/zero/.dart-cli-completion/zsh-config.zsh ]] && . /home/zero/.dart-cli-completion/zsh-config.zsh || true
@@ -248,4 +243,23 @@ function yy() {
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
+}
+
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
+
+tt() {
+  local SESSION=""
+
+  SESSION=$(ls "$HOME/.tmuxifier/layouts/" | fzf --reverse)
+
+  if [ -z "$SESSION" ]; then
+    echo -n "Enter a session name> "
+    read SESSION
+    tmuxifier new-session $SESSION
+    tmuxifier load-session $SESSION
+  else
+    SESSION=$(basename $SESSION .session.sh)
+    tmuxifier load-session $SESSION
+  fi
 }

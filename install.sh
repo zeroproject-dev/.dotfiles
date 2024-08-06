@@ -157,6 +157,8 @@ dotz -f "$userhome/.dotfiles"
 print_green "Installing tmux tmp"
 rm -rf "$userhome/.tmux/plugins/tpm"
 git clone https://github.com/tmux-plugins/tpm "$userhome/.tmux/plugins/tpm"
+rm -rf "$userhome/.tmuxifier"
+git clone https://github.com/jimeh/tmuxifier.git "$userhome/.tmuxifier"
 
 print_blue "Installing code packages"
 
