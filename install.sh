@@ -118,7 +118,7 @@ fi
 # Installing bspwm
 print_green "Installing environment (bspwm)"
 
-sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet polkit-gnome xorg-xsetroot playerctl pamixer xorg-xrandr pavucontrol xorg-xclipboard xclip xsel unzip htop fastfetch
+sudo pacman -S --noconfirm bspwm sxhkd polybar rofi feh picom udiskie scrot dunst network-manager-applet polkit-gnome xorg-xsetroot playerctl pamixer xorg-xrandr pavucontrol xorg-xclipboard xclip xsel unzip htop fastfetch ntfs-3g
 
 paru -Sy --noconfirm zomodoro x11-emoji-picker colorpicker i3lock-fancy-rapid-git boomer-git
 

@@ -251,6 +251,11 @@ eval "$(tmuxifier init -)"
 tt() {
   local SESSION=""
 
+  if [ ! -z "$1" ]; then
+    tmuxifier load-session $1
+    return;
+  fi
+
   SESSION=$(ls "$HOME/.tmuxifier/layouts/" | fzf --reverse)
 
   if [ -z "$SESSION" ]; then
