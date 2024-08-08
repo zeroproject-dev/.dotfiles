@@ -268,3 +268,5 @@ tt() {
     tmuxifier load-session $SESSION
   fi
 }
+
+alias sshk="kitten ssh"
