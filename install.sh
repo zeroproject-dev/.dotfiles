@@ -131,7 +131,7 @@ print_green "Installing terminal tools"
 sudo pacman -S --noconfirm zsh lsd bat kitty starship tmux man-db yazi ffmpegthumbnailer p7zip jq poppler fd ripgrep fzf zoxide imagemagick
 
 print_green "Installing fonts"
-sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-cascadia-code ttf-victor-mono-nerd ttf-hack-nerd
+sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-cascadia-code ttf-victor-mono-nerd ttf-hack-nerd noto-fonts-emoji
 
 print_green "Installing configuration tools"
 sudo pacman -S --noconfirm lxappearance qt5ct breeze breeze-gtk
