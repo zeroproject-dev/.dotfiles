@@ -3,6 +3,7 @@
 -- Add any additional autocmds here
 
 local make_files_commands = {
+  { { "*" }, { "echo", '"No run file"' } },
   { { "rust", "rs" }, { "cargo", "build" } },
   { { "c" }, { "clang", "%:p:h/*.c", "-o", "%:t:r", "&&", "./%:t:r" } },
   { { "java" }, { "java", "%" } },
@@ -14,19 +15,24 @@ local make_files_commands = {
   { { "sh" }, { "bash", "%" } },
 }
 
-local output_bufnr = vim.api.nvim_create_buf(false, true)
-vim.api.nvim_buf_set_name(output_bufnr, "Output Buffer")
-vim.bo[output_bufnr].bufhidden = "hide"
-vim.bo[output_bufnr].buftype = "nofile"
-vim.api.nvim_buf_set_keymap(output_bufnr, "n", "q", ":q<CR>", { noremap = true, silent = true })
+local root_files = { "Makefile", "build.sh", "run.sh" }
 
-local current_job_id = nil
+local function check_and_run_root_file()
+  local files = vim.fn.readdir(vim.fn.getcwd())
 
-local kill_current_job = function()
-  if current_job_id then
-    vim.fn.jobstop(current_job_id)
-    current_job_id = nil
+  for _, project_file in ipairs(files) do
+    if vim.tbl_contains(root_files, project_file) then
+      if project_file:lower() == "makefile" then
+        return { "make" }
+      else
+        if string.match(project_file, "%.sh$") then
+          return { "bash", project_file }
+        end
+      end
+    end
   end
+
+  return nil
 end
 
 for _, v in ipairs(make_files_commands) do
@@ -37,38 +43,15 @@ for _, v in ipairs(make_files_commands) do
         local command = vim.fn.expandcmd(table.concat(v[2], " "))
         vim.api.nvim_buf_set_keymap(0, "n", "<leader><Enter>", "", {
           callback = function()
-            kill_current_job()
-            vim.api.nvim_buf_set_lines(output_bufnr, 0, -1, false, { "output:" })
+            local root_command = check_and_run_root_file()
 
-            local append_data = function(_, data)
-              if data then
-                for _, line in ipairs(data) do
-                  vim.api.nvim_buf_set_lines(output_bufnr, -1, -1, false, { line })
-                end
-              end
+            if root_command then
+              command = vim.fn.expandcmd(table.concat(root_command, " "))
             end
 
-            current_job_id = vim.fn.jobstart(command, {
-              stdout_buffered = false,
-              on_stdout = append_data,
-              on_stderr = append_data,
-              on_exit = function()
-                current_job_id = nil
-              end,
-            })
+            vim.cmd("vsplit | terminal " .. command)
 
-            vim.api.nvim_create_autocmd("BufWinLeave", {
-              buffer = output_bufnr,
-              once = true,
-              callback = kill_current_job,
-            })
-
-            local buf_number = vim.fn.bufwinnr(output_bufnr)
-
-            if buf_number == -1 then
-              vim.cmd("vsplit")
-              vim.cmd("buffer " .. output_bufnr)
-            end
+            vim.cmd("startinsert")
           end,
           noremap = true,
           silent = true,

@@ -253,3 +253,4 @@ print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_
 #TODO:
 # add virtualBox
 # add VirtualManager if its possible
+# sudo virsh net-autostart default
