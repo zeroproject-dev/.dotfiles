@@ -184,7 +184,7 @@ fi
 
 if print_confirmation "Do you want to install python? (y/n)"; then
   print_green "Installing python"
-  sudo pacman -S --noconfirm pyenv python-pipx
+  sudo pacman -S --noconfirm pyenv python-pipx tk
   version=$(pyenv install -l | grep -P "^ *\d[\d|\.]*\d$" | tail -1)
   print_green "Python version: $version"
   pyenv install "$(echo "$version" | xargs)"

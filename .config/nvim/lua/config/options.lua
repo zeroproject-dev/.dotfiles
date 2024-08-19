@@ -7,10 +7,10 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
--- vim.opt.tabstop = 2
--- vim.opt.shiftwidth = 2
--- vim.opt.expandtab = true
--- vim.bo.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.bo.softtabstop = 2
 
 vim.opt.wrap = true
 vim.opt.scrolloff = 5
@@ -38,3 +38,16 @@ else
     },
   }
 end
+
+vim.g.rustaceanvim = {
+  server = {
+    cmd = function()
+      local mason_registry = require("mason-registry")
+      local ra_binary = mason_registry.is_installed("rust-analyzer")
+          -- This may need to be tweaked, depending on the operating system.
+          and mason_registry.get_package("rust-analyzer"):get_install_path() .. "/rust-analyzer"
+        or "rust-analyzer"
+      return { ra_binary } -- You can add args to the list, such as '--log-file'
+    end,
+  },
+}
