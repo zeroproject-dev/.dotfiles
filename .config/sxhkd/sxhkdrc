@@ -167,6 +167,17 @@ alt + F7
 alt + F6
   playerctl stop
 
+# Brightness
+# brightness down
+
+XF86MonBrightnessDown
+  brightnessctl set 10%-
+
+# brightness up
+
+XF86MonBrightnessUp
+  brightnessctl set 10%+
+
 # Screenshots
 super + shift + s
   bash $HOME/.dotfiles/.config/sxhkd/scripts/screenshot.sh

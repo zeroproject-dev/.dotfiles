@@ -226,6 +226,12 @@ install_package "OBS Studio" "paru -S --noconfirm obs-studio" ""
 
 install_package "Zathura" "paru -S --noconfirm zathura zathura-pdf-poppler" "xdg-mime default org.pwmt.zathura.desktop application/pdf"
 
+install_package "Barrier" "paru -S --noconfirm barrier" ""
+
+install_package "L2TP With NetworkManager" "sudo pacman -S --noconfirm networkmanager-l2tp strongswan" ""
+
+install_package "Bluetooth" "sudo pacman -S --noconfirm bluez bluez-utils blueman brightnessctl" "sudo systemctl enable bluetooth.service && sudo systemctl start bluetooth.service"
+
 print_blue "Installing display manager"
 
 install_package "sddm" "sudo pacman -S --noconfirm sddm" "
