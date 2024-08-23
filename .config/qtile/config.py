@@ -1,16 +1,40 @@
+# Copyright (c) 2010 Aldo Cortesi
+# Copyright (c) 2010, 2014 dequis
+# Copyright (c) 2012 Randall Ma
+# Copyright (c) 2012-2014 Tycho Andersen
+# Copyright (c) 2012 Craig Barnes
+# Copyright (c) 2013 horsik
+# Copyright (c) 2013 Tao Sauvage
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import os
 import subprocess
-from libqtile import hook
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
 
 mod = "mod4"
-# terminal = guess_terminal()
-terminal = "kitty"
-bar_color = "#232323"
+terminal = "kitty" # guess_terminal()
+home = os.path.expanduser('~')
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -20,25 +44,18 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(),
-        desc="Move window focus to other window"),
+    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
-        desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
-        desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
-        desc="Move window down"),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "mod1"], "h", lazy.layout.grow_left(),
-        desc="Grow window to the left"),
-    Key([mod, "mod1"], "l", lazy.layout.grow_right(),
-        desc="Grow window to the right"),
-    Key([mod, "mod1"], "j", lazy.layout.grow_down(),
-        desc="Grow window down"),
+    Key([mod, "mod1"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "mod1"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "mod1"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "mod1"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
@@ -53,96 +70,141 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "m", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
+    Key(
+        [mod],
+        "f",
+        lazy.window.toggle_fullscreen(),
+        desc="Toggle fullscreen on the focused window",
+    ),
+    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod, "mod1"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "mod1"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    # Custom Keybindings
-    Key([mod], "n", lazy.spawn("firefox"), desc="Spawn a firefox browser"),
-    Key(["mod1"], "space", lazy.spawn(
-        "rofi -show drun -show-icons"), desc="Rofi menu"),
-    Key([mod], "e", lazy.spawn("nautilus"),
-        desc="Spawn a nautilus file manager"),
-    Key([mod], "f", lazy.window.toggle_floating(),
-        desc="togge floating window"),
+    # Custom keybindings
+    Key([mod], "space", lazy.spawn("rofi -show drun -show-icons"), desc="Launch rofi"),
+
+    Key([mod], "q", lazy.spawn(f"bash {home}/.dotfiles/.config/rofi/scripts/power.sh"), desc="Launch power menu"),
+
+    Key([mod], "b", lazy.spawn(f"microsoft-edge-stable"), desc="Launch Microsoft Edge"),
 
     # playerctl
     Key([], "XF86AudioRaiseVolume", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ +2%")),
+        f"sh {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh up")),
     Key([], "XF86AudioLowerVolume", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ -2%")),
+        f"sh {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh down")),
     Key([], "XF86AudioMute", lazy.spawn(
-        "pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+        f"sh {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh mute")),
 
     Key(["mod1"], "F12", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ +2%")),
+        f"sh {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh up")),
     Key(["mod1"], "F11", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ -2%")),
+        f"sh {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh down")),
     Key(["mod1"], "F10", lazy.spawn(
-        "pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+        f"sh {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh mute")),
 
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
     Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
 
+    Key(["mod1"], "F8", lazy.spawn("playerctl play-pause")),
+    Key(["mod1"], "F9", lazy.spawn("playerctl next")),
+    Key(["mod1"], "F7", lazy.spawn("playerctl previous")),
+    Key(["mod1"], "F6", lazy.spawn("playerctl stop")),
+
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 10%+")),
+
     # Screenshots
-    Key([mod, "shift"], "s", lazy.spawn("scrot -s --freeze --line mode=edge"),
+    Key([mod, "shift"], "s", lazy.spawn(f"bash {home}/.dotfiles/.config/sxhkd/scripts/screenshot.sh"),
         desc="Take screenshot with scrot"),
+
+    Key([mod, "shift"], "c", lazy.spawn(f"colorpicker --short --one-shot --preview | xclip -selection clipboard"),
+        desc="Color picker"),
+
+    Key([mod, "mod1"], "p", lazy.spawn(f"zomodoro"), desc="Pomodoro by ZeroProject"),
+
+    Key([mod], "period", lazy.spawn(f"bash {home}/.config/qtile/emoji-picker.sh"), desc="Emoji picker"),
+
+    Key([mod, "mod1"], "period", lazy.spawn(f"boomer"), desc="Boomer by tsoding"),
+
+    Key([mod, "mod1"], "k", lazy.spawn(f"setxkbmap -layout us -variant altgr-intl"), desc="Set keymap"),
 ]
 
-groups = [Group(i) for i in [" 󰣇 ", "  ",  " 󰆍 ",    "  "]]
+# Add key bindings to switch VTs in Wayland.
+# We can't check qtile.core.name in default config as it is loaded before qtile is started
+# We therefore defer the check until the key binding is run by using .when(func=...)
+for vt in range(1, 8):
+    keys.append(
+        Key(
+            ["control", "mod1"],
+            f"f{vt}",
+            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
+            desc=f"Switch to VT{vt}",
+        )
+    )
+
+
+groups = [Group(i) for i in ["  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "]]
 
 for j, group in enumerate(groups):
-    i = str(j+1)
     keys.extend(
         [
-            # mod1 + letter of group = switch to group
+            # mod + group number = switch to group
             Key(
                 [mod],
-                i,
+                str(j + 1),
                 lazy.group[group.name].toscreen(),
                 desc="Switch to group {}".format(group.name),
             ),
-            # mod1 + shift + letter of group = switch to & move focused
-            # window to group
+            # mod + shift + group number = switch to & move focused window to group
             Key(
                 [mod, "shift"],
-                i,
+                str(j + 1),
                 lazy.window.togroup(group.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(
-                    group.name),
+                desc="Switch to & move focused window to group {}".format(group.name),
             ),
             # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
+            # # mod + shift + group number = move focused window to group
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
             #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
+layout_theme = {
+    "border_width": 2,
+    "margin": 6,
+    "border_focus": "#C5C8C6",
+    "border_normal": "#282A2E"
+}
+
 layouts = [
-    layout.Columns(border_focus_stack=[
-                   "#d75f5f", "#8f3d3d"], border_width=1, margin=5),
-    layout.Max(),
+    layout.Bsp(**layout_theme),
+    # layout.Columns(**layout_theme),
+    layout.Max(**layout_theme),
+    layout.Zoomy(**layout_theme),
+    layout.Tile(
+        shift_windows=True,
+        border_width=0,
+        margin=0,
+        ratio=0.335
+    ),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
-    font="Caskadya Code",
-    fontsize=16,
+    font="Hacker Nerd Font",
+    fontsize=12,
     padding=1,
 )
 extension_defaults = widget_defaults.copy()
@@ -151,38 +213,76 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                # widget.CurrentLayout(),
-                widget.GroupBox(),
                 widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.GroupBox(
+                    fontsize=11,
+                    borderwidth=3,
+                    highlight_method="line",
+                    this_current_screen_border="#2afca1",
+                    active="#2afca1",
+                    rounded=False,
                 ),
-                # NB Systray is incompatible with Wayland, consider using
-                # StatusNotifier instead
+                widget.CurrentLayoutIcon(
+                    foreground="#8ABEB7",
+                    padding=4,
+                    scale=0.6,
+                ),
+                widget.CurrentLayout(
+                    foreground="#8ABEB7",
+                ),
+                widget.TextBox(
+                    text = '|',
+                    font = 'Hacker Nerd Font',
+                    fontsize = 16,
+                ),
+                widget.WindowName(
+                    max_chars=50,
+                ),
+                # widget.Chord(
+                #     chords_colors={
+                #         "launch": ("#ff0000", "#ffffff"),
+                #     },
+                #     name_transform=lambda name: name.upper(),
+                # ),
+                # widget.TextBox("default config", name="default"),
+                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
+                widget.Volume(
+                    emoji = True,
+                    # emoji_list = ['🔇', '🔈', '🔉', '🔊'],
+                    emoji_list = ['🔈', '🔉', '🔊'],
+                    check_mute_command = "pamixer --get-mute",
+                    check_mute_string = "true",
+                    get_volume_command = "pamixer --get-volume",
+                    mute_command = f"bash {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh mute",
+                    volume_down_command = f"bash {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh down",
+                    volume_up_command = f"bash {home}/.dotfiles/.config/sxhkd/scripts/change_volume.sh up",
+                ),
+                widget.Spacer(length=8),
+                widget.KeyboardLayout(
+                    fmt = " {}",
+                ),
                 widget.Systray(),
-                widget.Clock(format="%m-%d %a %I:%M %p"),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 # widget.QuickExit(),
             ],
-            32,
-            background=bar_color,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]
-            # Borders are magenta
+            24,
+            background="#282A2E",
+            # border_width=[1, 0, 1, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve performance, however your system might still be struggling
+        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+        # x11_drag_polling_rate = 60,
     ),
 ]
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
@@ -190,11 +290,11 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
+floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of
-        # an X client.
+        # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
@@ -215,6 +315,10 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
+# xcursor theme (string or None) and size (integer) for Wayland backend
+wl_xcursor_theme = None
+wl_xcursor_size = 24
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -225,8 +329,7 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
-
-@ hook.subscribe.startup_once
+@hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~')
-    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call(['sh', home])

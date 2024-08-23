@@ -4,7 +4,7 @@ function docker_start() {
   if [ $# -ge 2 ] && [ "$2" = "clear" ]; then
     sudo rm -rf ~/docker/$1/data
   fi
-  docker compose up --remove-orphans --force-recreate --build
+  docker compose up --remove-orphans
   cd "$bfo"
 }
 
