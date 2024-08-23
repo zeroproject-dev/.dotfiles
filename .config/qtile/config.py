@@ -78,7 +78,7 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen on the focused window",
     ),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod], "s", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "mod1"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "mod1"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
