@@ -17,7 +17,7 @@ return {
       },
     },
     window = {
-      position = "left",
+      position = "right",
       mappings = {
         ["l"] = "open",
         ["h"] = "open",

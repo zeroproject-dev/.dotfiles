@@ -3,7 +3,6 @@
 -- Add any additional autocmds here
 
 local make_files_commands = {
-  { { "*" }, { "echo", '"No run file"' } },
   { { "rust", "rs" }, { "cargo", "build" } },
   { { "c" }, { "clang", "%:p:h/*.c", "-o", "%:t:r", "&&", "./%:t:r" } },
   { { "java" }, { "java", "%" } },

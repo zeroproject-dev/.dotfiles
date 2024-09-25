@@ -38,54 +38,54 @@ return {
   --     },
   --   },
   -- },
-  -- {
-  --   "tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {
-  --     styles = {
-  --       comments = { italic = true },
-  --       keywords = { italic = true },
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {
-  --     commentStyle = { italic = true },
-  --     keywordsStyle = { italic = true },
-  --     transparent = false,
-  --     theme = "dragon",
-  --   },
-  -- },
-  -- {
-  --   "navarasu/onedark.nvim",
-  --   opts = {
-  --     style = "darker",
-  --     code_style = {
-  --       comments = "italic",
-  --       keywords = "italic,bold",
-  --     },
-  --   },
-  -- },
   {
-    "EdenEast/nightfox.nvim",
+    "tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
     opts = {
-      options = {
-        styles = {
-          comments = "italic",
-          keywords = "bold",
-          types = "bold",
-        },
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
       },
     },
   },
   {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      commentStyle = { italic = true },
+      keywordsStyle = { italic = true },
+      transparent = false,
+      theme = "dragon",
+    },
+  },
+  {
+    "navarasu/onedark.nvim",
+    opts = {
+      style = "darker",
+      code_style = {
+        comments = "italic",
+        keywords = "italic,bold",
+      },
+    },
+  },
+  -- { -- carbonfox
+  --   "EdenEast/nightfox.nvim",
+  --   opts = {
+  --     options = {
+  --       styles = {
+  --         comments = "italic",
+  --         keywords = "bold",
+  --         types = "bold",
+  --       },
+  --     },
+  --   },
+  -- },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "carbonfox",
+      colorscheme = "tokyonight-night",
     },
   },
 }

@@ -39,6 +39,9 @@ bindkey '^ ' autosuggest-accept
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# history search
+bindkey '^R' history-incremental-search-backward
+
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/zero/.dart-cli-completion/zsh-config.zsh ]] && . /home/zero/.dart-cli-completion/zsh-config.zsh || true

@@ -51,3 +51,26 @@ vim.g.rustaceanvim = {
     end,
   },
 }
+
+function go_to_column_in_file(file_info_string)
+  local file_info = vim.split(file_info_string, ":")
+  local column = 0
+
+  -- Abre el archivo
+  vim.cmd("edit " .. file_info[1])
+
+  -- Si hay más de dos elementos, establece la columna
+  if #file_info > 2 then
+    column = file_info[3]
+    vim.cmd("normal! " .. column .. "|")
+  end
+end
+
+vim.api.nvim_set_keymap(
+  "n",
+  "gff",
+  ':lua go_to_column_in_file(vim.fn.expand("<cWORD>"))<CR>',
+  { noremap = true, silent = true }
+)
+
+vim.g.lazyvim_php_lsp = "intelephense"
