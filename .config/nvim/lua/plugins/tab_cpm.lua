@@ -18,7 +18,9 @@ return {
         end, { "i", "s" }),
         ["<C-k>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_prev_item()
+            cmp.select_prev_item({
+              behavior = cmp.SelectBehavior.Select,
+            })
           elseif vim.snippet.active({ direction = -1 }) then
             vim.schedule(function()
               vim.snippet.jump(-1)
@@ -29,7 +31,9 @@ return {
         end, { "i", "s" }),
         ["<C-j>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            cmp.select_next_item({
+              behavior = cmp.SelectBehavior.Select,
+            })
           elseif vim.snippet.active({ direction = 1 }) then
             vim.schedule(function()
               vim.snippet.jump(1)
