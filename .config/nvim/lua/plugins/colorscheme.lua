@@ -1,43 +1,43 @@
 return {
-  -- {
-  --   "catppuccin/nvim",
-  --   lazy = false,
-  --   name = "catppuccin",
-  --   opts = {
-  --     integrations = {
-  --       alpha = true,
-  --       cmp = true,
-  --       gitsigns = true,
-  --       illuminate = true,
-  --       indent_blankline = { enabled = true },
-  --       lsp_trouble = true,
-  --       mason = true,
-  --       mini = true,
-  --       native_lsp = {
-  --         enabled = true,
-  --         underlines = {
-  --           errors = { "undercurl" },
-  --           hints = { "undercurl" },
-  --           warnings = { "undercurl" },
-  --           information = { "undercurl" },
-  --         },
-  --       },
-  --       styles = {
-  --         comments = { "italic" },
-  --         keywords = { "italic" },
-  --       },
-  --       navic = { enabled = true, custom_bg = "lualine" },
-  --       neotest = true,
-  --       noice = true,
-  --       notify = true,
-  --       neotree = true,
-  --       semantic_tokens = true,
-  --       telescope = true,
-  --       treesitter = true,
-  --       which_key = true,
-  --     },
-  --   },
-  -- },
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    name = "catppuccin",
+    opts = {
+      integrations = {
+        alpha = true,
+        cmp = true,
+        gitsigns = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        lsp_trouble = true,
+        mason = true,
+        mini = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+          },
+        },
+        styles = {
+          comments = { "italic" },
+          keywords = { "italic" },
+        },
+        navic = { enabled = true, custom_bg = "lualine" },
+        neotest = true,
+        noice = true,
+        notify = true,
+        neotree = true,
+        semantic_tokens = true,
+        telescope = true,
+        treesitter = true,
+        which_key = true,
+      },
+    },
+  },
   {
     "tokyonight.nvim",
     lazy = false,
@@ -60,32 +60,55 @@ return {
       theme = "dragon",
     },
   },
-  {
-    "navarasu/onedark.nvim",
-    opts = {
-      style = "darker",
-      code_style = {
-        comments = "italic",
-        keywords = "italic,bold",
-      },
-    },
-  },
-  -- { -- carbonfox
-  --   "EdenEast/nightfox.nvim",
+  -- {
+  --   "navarasu/onedark.nvim",
   --   opts = {
-  --     options = {
-  --       styles = {
-  --         comments = "italic",
-  --         keywords = "bold",
-  --         types = "bold",
-  --       },
+  --     style = "darker",
+  --     code_style = {
+  --       comments = "italic",
+  --       keywords = "italic,bold",
   --     },
   --   },
   -- },
+  { -- carbonfox
+    "EdenEast/nightfox.nvim",
+    opts = {
+      options = {
+        styles = {
+          comments = "italic",
+          keywords = "bold",
+          types = "bold",
+        },
+      },
+    },
+  },
+  {
+    "oxfist/night-owl.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() end,
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() end,
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
+    opts = {
+      styles = {
+        comments = "italic",
+        keywords = "italic,bold",
+        types = "italic,bold",
+      },
+    },
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-night",
+      colorscheme = "carbonfox",
     },
   },
 }
