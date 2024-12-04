@@ -1,11 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
-    setup = {
-      rust_analyzer = function()
-        return true
-      end,
-    },
     servers = {
       angularls = {
         on_new_config = function(new_config, _)

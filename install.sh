@@ -260,3 +260,4 @@ print_blue "more info on https://www.reddit.com/r/btrfs/comments/l8qu3l/android_
 # add virtualBox
 # add VirtualManager if its possible
 # sudo virsh net-autostart default
+# rustup component add rust-analyzer // For rust-analyzer neovim
