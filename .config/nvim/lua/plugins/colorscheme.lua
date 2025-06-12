@@ -74,10 +74,11 @@ return {
     "EdenEast/nightfox.nvim",
     opts = {
       options = {
+        transparent = true,
         styles = {
           comments = "italic",
           keywords = "bold",
-          types = "bold",
+          types = "italic,bold",
         },
       },
     },
@@ -119,6 +120,14 @@ return {
   --   --     vim.cmd.colorscheme('zenbones')
   --   -- end
   -- },
+  {
+    "mtendekuyokwa19/stoics.nvim",
+  },
+  {
+    "forest-nvim/sequoia.nvim",
+    lazy = false,
+    priority = 1000,
+  },
   {
     "LazyVim/LazyVim",
     opts = {

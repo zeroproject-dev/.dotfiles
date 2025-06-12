@@ -71,6 +71,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.filetype.add({
   extension = {
     ["http"] = "http",
+    [".*%.blade%.php"] = "blade",
   },
 })
 
